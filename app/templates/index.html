@@ -2,13 +2,10 @@
 <html>
 
 <head>
-
     <title>Task Manager</title>
 
     <link rel="stylesheet"
-          href="{{ url_for('static',
-          filename='styles.css') }}">
-
+          href="{{ url_for('static', filename='styles.css') }}">
 </head>
 
 <body>
@@ -17,68 +14,87 @@
 
 <h1>Task Manager</h1>
 
+<!-- ================= CREATE ================= -->
 <h2>Create Task</h2>
 
 <form method="POST" action="/create">
 
+    <input type="text" name="title" placeholder="Title" required>
+
+    <input type="text" name="description" placeholder="Description">
+
+    <select name="status">
+        <option value="pending">Pending</option>
+        <option value="completed">Completed</option>
+    </select>
+
+    <button type="submit">Save</button>
+
+</form>
+
+
+<!-- ================= EDIT ================= -->
+{% if task_to_edit %}
+
+<h2>Edit Task</h2>
+
+<form method="POST" action="/edit/{{ task_to_edit[0] }}">
+
     <input type="text"
            name="title"
-           placeholder="Title"
+           value="{{ task_to_edit[1] }}"
            required>
 
     <input type="text"
            name="description"
-           placeholder="Description">
+           value="{{ task_to_edit[2] }}">
 
     <select name="status">
 
-        <option value="Pending">
+        <option value="pending"
+            {% if task_to_edit[3] == 'pending' %}selected{% endif %}>
             Pending
         </option>
 
-        <option value="Completed">
+        <option value="completed"
+            {% if task_to_edit[3] == 'completed' %}selected{% endif %}>
             Completed
         </option>
 
     </select>
 
-    <button type="submit">
-        Save
-    </button>
+    <button type="submit">Update</button>
 
 </form>
 
+{% endif %}
+
+
+<!-- ================= LIST ================= -->
 <h2>Task List</h2>
 
 <table>
 
 <tr>
-
-<th>ID</th>
-<th>Title</th>
-<th>Description</th>
-<th>Status</th>
-<th>Action</th>
-
+    <th>ID</th>
+    <th>Title</th>
+    <th>Description</th>
+    <th>Status</th>
+    <th>Action</th>
 </tr>
 
 {% for task in tasks %}
 
 <tr>
+    <td>{{ task[0] }}</td>
+    <td>{{ task[1] }}</td>
+    <td>{{ task[2] }}</td>
+    <td>{{ task[3] }}</td>
 
-<td>{{ task[0] }}</td>
-<td>{{ task[1] }}</td>
-<td>{{ task[2] }}</td>
-<td>{{ task[3] }}</td>
-
-<td>
-
-<a href="/delete/{{ task[0] }}">
-Delete
-</a>
-
-</td>
-
+    <td>
+        <a href="/edit/{{ task[0] }}">Edit</a> |
+        <a href="/delete/{{ task[0] }}">Delete</a>
+    </td>
 </tr>
 
 {% endfor %}
@@ -88,5 +104,4 @@ Delete
 </div>
 
 </body>
-
 </html>
