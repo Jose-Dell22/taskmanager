@@ -1,12 +1,13 @@
-from flask import Flask, render_template
-
+from flask import Flask, render_template, request, redirect
 from controllers.task_controller import TaskController
+from models.task import Task
 
 app = Flask(__name__)
 
 controller = TaskController()
 
 
+#  HOME → list tasks
 @app.route("/")
 def index():
 
@@ -18,9 +19,52 @@ def index():
     )
 
 
+# CREATE TASK
+@app.route("/create", methods=["POST"])
+def create():
+
+    title = request.form.get("title")
+    description = request.form.get("description")
+    status = request.form.get("status")
+
+    task = Task(
+        title,
+        description,
+        status
+    )
+
+    controller.create_task(task)
+
+    return redirect("/")
+
+
+#  DELETE TASK
+@app.route("/delete/<int:task_id>")
+def delete(task_id):
+
+    controller.delete_task(task_id)
+
+    return redirect("/")
+
+
+#  UPDATE STATUS (optional)
+@app.route("/update_status/<int:task_id>", methods=["POST"])
+def update_status(task_id):
+
+    new_status = request.form.get("status")
+
+    controller.update_status(
+        task_id,
+        new_status
+    )
+
+    return redirect("/")
+
+
 if __name__ == "__main__":
 
     app.run(
         host="0.0.0.0",
-        port=5000
+        port=5000,
+        debug=True
     )
