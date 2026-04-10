@@ -1,0 +1,171 @@
+/* General page style */
+
+body {
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    background-color: #f4f6f8;
+
+    margin: 0;
+
+    padding: 0;
+
+}
+
+
+
+/* Container */
+
+.container {
+
+    width: 80%;
+
+    margin: 40px auto;
+
+    background-color: white;
+
+    padding: 20px;
+
+    border-radius: 8px;
+
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+
+}
+
+
+
+/* Titles */
+
+h1 {
+
+    text-align: center;
+
+    color: #333;
+
+}
+
+
+
+h2 {
+
+    color: #555;
+
+}
+
+
+
+/* Form styling */
+
+form {
+
+    margin-bottom: 20px;
+
+}
+
+
+
+input[type="text"],
+
+select {
+
+    padding: 8px;
+
+    margin: 5px;
+
+    border-radius: 5px;
+
+    border: 1px solid #ccc;
+
+}
+
+
+
+/* Button */
+
+button {
+
+    padding: 8px 15px;
+
+    border: none;
+
+    border-radius: 5px;
+
+    background-color: #007bff;
+
+    color: white;
+
+    cursor: pointer;
+
+}
+
+
+
+button:hover {
+
+    background-color: #0056b3;
+
+}
+
+
+
+/* Table styling */
+
+table {
+
+    width: 100%;
+
+    border-collapse: collapse;
+
+    margin-top: 10px;
+
+}
+
+
+
+table th {
+
+    background-color: #007bff;
+
+    color: white;
+
+    padding: 10px;
+
+}
+
+
+
+table td {
+
+    padding: 8px;
+
+    border-bottom: 1px solid #ddd;
+
+}
+
+
+
+table tr:hover {
+
+    background-color: #f1f1f1;
+
+}
+
+
+
+/* Delete link */
+
+a {
+
+    color: red;
+
+    text-decoration: none;
+
+}
+
+
+
+a:hover {
+
+    text-decoration: underline;
+
+}
