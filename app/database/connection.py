@@ -10,7 +10,7 @@ class DatabaseConnection:
     def connect(self):
         try:
             connection = mysql.connector.connect(
-                host="db",          # nombre del servicio docker
+                host="https://mysql8-0-latest.onrender.com/",          # nombre del servicio docker
                 user="user",
                 password="user123",    # ← IMPORTANTE
                 database="taskdb"
